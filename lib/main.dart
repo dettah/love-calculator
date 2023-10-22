@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,8 +14,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  List<String> imageLIst = ["enemies.jpg", "love.gif"];
+  var imageStatus = "talking.gif";
   void calculatorFunc() {
-    print("calculator pressed!");
+    var amorIndex = Random().nextInt(100) + 1;
+    setState(() {
+    if (amorIndex < 50) {
+      imageStatus = imageLIst[0];
+    } else {
+      imageStatus = imageLIst[1];
+    }
+    });
   }
 
   @override
@@ -39,7 +50,7 @@ class _MyAppState extends State<MyApp> {
             ),
             Center(
               child: Image.asset(
-                "assets/love.gif",
+                "assets/$imageStatus",
                 width: 200,
               ),
             ),
@@ -64,10 +75,7 @@ class _MyAppState extends State<MyApp> {
                   child: const Text(
                     "Calculate",
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      letterSpacing: 2
-                    ),
+                        color: Colors.white, fontSize: 30, letterSpacing: 2),
                   )),
             )
           ],
